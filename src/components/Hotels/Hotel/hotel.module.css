@@ -1,0 +1,18 @@
+.hotel {
+    margin-bottom: 20px;
+    background-color: #e9ecef;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.description {
+    color: grey;
+    margin-top: 10px;
+    font-size: .88rem;
+    margin-bottom: 0;
+    text-align: left;
+}

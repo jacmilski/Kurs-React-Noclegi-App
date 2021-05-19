@@ -1,0 +1,39 @@
+import { min } from "moment";
+
+export const validateEmail = (text) => {
+    const reg = /^[a-z\d]+[\w\d.-]*@(?:[a-z\d]+[a-z\d-]+\.){1,5}[a-z]{2,6}$/i;
+    return reg.test(text);
+    //funkcja zwraca true lub false
+};
+
+// rules
+const availableRules = {
+    required(value) {
+        return value ? '' : 'Pole wymagane';
+    },
+    min(value, rule) {
+        return value.length > rule.length ? '' : `Min. znaków ${rule.length}`
+    }
+};
+
+// validation
+export function validate(rules = [], value) {
+
+    for (let i = 0; i < rules.length; i++) {
+        const rule = rules[i];
+
+        if (rule instanceof Object) {
+            const errorMessage = availableRules[rule.rule](value, rule);
+            if (errorMessage) {
+                return errorMessage;
+            }
+        } else {
+            const errorMessage = availableRules[rule](value);
+            if (errorMessage) {
+                return errorMessage;
+            }
+        }
+    }
+
+    return '';
+};
